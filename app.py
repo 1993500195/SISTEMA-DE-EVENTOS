@@ -1,11 +1,16 @@
-from flask import Flask, render_template, request, redirect, session
+import os
+from flask import Flask, render_template, request, redirect, session, url_for
+from werkzeug.utils import secure_filename
 from models import db, User, Event
 from database import init_db
 
 app = Flask(__name__)
 app.secret_key = 'secreto123'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:500195@localhost/eventos_db'
+
+# Configurações do banco e upload
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://root:senha@localhost/eventos_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 db.init_app(app)
 init_db(app)
@@ -46,7 +51,16 @@ def add_event():
         local = request.form['local']
         descricao = request.form['descricao']
 
-        novo_evento = Event(titulo=titulo, data=data, local=local, descricao=descricao)
+        imagem_file = request.files['imagem']
+        if imagem_file and imagem_file.filename:
+            filename = secure_filename(imagem_file.filename)
+            caminho_imagem = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            imagem_file.save(caminho_imagem)
+            imagem_url = url_for('static', filename=f'uploads/{filename}')
+        else:
+            imagem_url = ''
+
+        novo_evento = Event(titulo=titulo, data=data, local=local, descricao=descricao, imagem=imagem_url)
         db.session.add(novo_evento)
         db.session.commit()
 

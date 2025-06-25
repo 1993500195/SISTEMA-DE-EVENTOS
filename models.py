@@ -14,3 +14,4 @@ class Event(db.Model):
     data = db.Column(db.String(20))
     local = db.Column(db.String(150))
     descricao = db.Column(db.Text)
+    imagem = db.Column(db.String(500))  # URL ou caminho da imagem

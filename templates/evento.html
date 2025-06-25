@@ -3,5 +3,8 @@
 <h2>{{ evento.titulo }}</h2>
 <p><strong>Data:</strong> {{ evento.data }}</p>
 <p><strong>Local:</strong> {{ evento.local }}</p>
+{% if evento.imagem %}
+<img src="{{ evento.imagem }}" alt="Imagem do evento" style="max-width:400px;"><br>
+{% endif %}
 <p>{{ evento.descricao }}</p>
 {% endblock %}
