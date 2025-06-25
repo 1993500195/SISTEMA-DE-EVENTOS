@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Eventos</h2>
+<ul>
+    {% for evento in eventos %}
+    <li><a href="/evento/{{ evento.id }}">{{ evento.titulo }} - {{ evento.data }} - {{ evento.local }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

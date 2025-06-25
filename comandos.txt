@@ -1,0 +1,30 @@
+CREATE DATABASE eventos_db;
+
+pip install flask flask_sqlalchemy mysql-connector-python
+
+
+python app.py
+
+# CONECTAR AO BANCO DE DADOS
+
+# pip install mysql-connector-py
+
+#----------------------------------------
+
+# RODAR O PROJETO
+
+# python gestor_materiais_mysql.py
+
+#----------------------------------------
+
+# INSTALAR O FLASK
+
+# pip install flask
+
+#----------------------------------------
+
+# INICIAR O SERVIDOR
+
+# python app.py
+
+# PC DA ESCOLA 123

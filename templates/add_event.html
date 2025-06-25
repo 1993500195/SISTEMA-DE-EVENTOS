@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Adicionar Evento</h2>
+<form method="POST">
+    <label>Título:</label><br>
+    <input type="text" name="titulo" required><br>
+
+    <label>Data:</label><br>
+    <input type="date" name="data" required><br>
+
+    <label>Local:</label><br>
+    <input type="text" name="local" required><br>
+
+    <label>Descrição:</label><br>
+    <textarea name="descricao" rows="4"></textarea><br>
+
+    <input type="submit" value="Salvar">
+</form>
+{% endblock %}
